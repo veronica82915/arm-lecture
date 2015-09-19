@@ -13,6 +13,21 @@ fibonacci:
 	@ PROLOG
 	push {r3, r4, r5, lr}
 
+	mov.w r2, #0
+	mov r3, r0
+	mov.w r4, #-1
+	mov.w r5, #1
+
+loop:
+	add r2, r4, r5
+	mov r4, r5
+	mov r5, r2
+	sub r3, r3, #1
+	cmp r3, #0
+	bge loop
+
+	mov r0, r5	
+
 	@ R4 = R0 - 0 (update flags)
 	@ if(R0 <= 0) goto .L3 (which returns 0)
 
