@@ -13,16 +13,16 @@ fibonacci:
 	@ PROLOG
 	push {r3, r4, r5, lr}
 
-	mov.w r2, #0
-	mov r3, r0
-	mov.w r4, #-1
-	mov.w r5, #1
+	mov.w r2, #0		@ sum = 0;
+	mov r3, r0		@ iterative num
+	mov.w r4, #-1		@ pre = -1
+	mov.w r5, #1		@ cur - 1
 
 loop:
-	add r2, r4, r5
-	mov r4, r5
-	mov r5, r2
-	sub r3, r3, #1
+	add r2, r4, r5		@ sum = pre + cur
+	mov r4, r5		@ pre = cur
+	mov r5, r2		@ cur = sum
+	sub r3, r3, #1		@ iterative count down
 	cmp r3, #0
 	bge loop
 
