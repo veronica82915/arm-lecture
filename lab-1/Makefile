@@ -24,14 +24,12 @@ clean:
 	rm -f $(objects) fibseq
 
 QEMU_CMD = qemu-arm -L /usr/arm-linux-gnueabihf ./fibseq &
-CMD = yes 9 | $(call QEMU_CMD) && sleep 1
+CMD = yes 9 | $(call QEMU_CMD) && sleep 1 
 qemu: fibseq
-	@ans=`yes 10 | $(call QEMU_CMD)` ; \
-	echo $$ans; \
-	ans=`echo $$ans | cut -d ' ' -f 7` ; \
-	if [ "55" -eq "$$ans" ] ; then \
-		echo " -> correct" ; \
-	else \
-		echo " -> wrong" ; \
-	fi
+	@n=0; \
+	while [ "$$n" -le "46" ]; do \
+		ans=`yes $$n | $(call QEMU_CMD)`; \
+		echo $$ans; \
+		n=$$(($$n+1)); \
+	done
 	@

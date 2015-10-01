@@ -15,8 +15,8 @@ fibonacci:
 
 	@ R4 = R0 - 0 (update flags)
 	@ if(R0 <= 0) goto .L3 (which returns 0)
-	sub r4, r0, #0
-	cmp r4, #0
+	subs r4, r0, #0
+	@cmp r4, #0
 	ble .L3
 	@ Compare R4 wtih 1
 	@ If R4 == 1 goto .L4 (which returns 1)
